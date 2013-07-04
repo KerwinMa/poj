@@ -16,7 +16,7 @@ using namespace std;
 bool flip[4][4];
 
 //·­×ª´ÎÊı
-int maxFlip = 16;
+int minFlip = 16;
 
 void input()
 {
@@ -84,14 +84,14 @@ void onFlip(int index, int flipNum)
 {
 	if (index >= 16)
 		return;
-	if(flipNum > maxFlip)
+	if(flipNum > minFlip)
 		return;
 
 	onFlip(index + 1, flipNum);
 	flipOne(index, flipNum);
 	flipNum++;
-	if (check() && flipNum < maxFlip)
-		maxFlip = flipNum;
+	if (check() && flipNum < minFlip)
+		minFlip = flipNum;
 	else
 		onFlip(index + 1, flipNum);
 
@@ -105,13 +105,13 @@ int main()
 
 	if (check())
 	{
-		maxFlip = 0;
+		minFlip = 0;
 	}
 
 	onFlip(0, 0);
 
-	if (maxFlip != 16)
-		printf("%d\n", maxFlip);
+	if (minFlip != 16)
+		printf("%d\n", minFlip);
 	else
 		printf("Impossible\n");
 	return 0;
